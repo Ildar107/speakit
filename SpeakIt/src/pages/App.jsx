@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import routes from '../constants/routes';
 import GamePage from './GamePage';
 import ResultPage from './ResultPage';
+import StatsPage from './StatsPage';
 import StoreContext from '../context/StoreContext'
 
 const SpeechRecognition = window.SpeechRecognition 
@@ -12,6 +13,8 @@ const SpeechRecognition = window.SpeechRecognition
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 recognition.lang = 'en-US'
+
+let stats = window.localStorage.getItem('stats') ? JSON.parse(window.localStorage.getItem('stats')) : [];
 
 class App extends Component {
  constructor(props) {
@@ -27,9 +30,22 @@ class App extends Component {
     words: [],
     knownWords: [],
     isNewGame: true,
+    isSpeakMode: false,
+    shift: 10,
     recognition: recognition,
     changeParentState: (state) => {
       this.setState(state);
+    },
+    updateStats: (state) => {
+      stats.unshift({
+        time: (new Date()).toLocaleDateString(),
+        page: state.activePage + 1,
+        group: state.activeGroup + 1,
+        errors: state.words.filter((x) => !state.knownWords.includes(x)).length,
+        success: state.knownWords.length
+      })
+      stats = stats.slice(0,10);
+      localStorage.setItem('stats', JSON.stringify(stats));
     }
    }
  }
@@ -47,6 +63,9 @@ class App extends Component {
               </Route>
               <Route path={routes.RESULTS} exact>
                 <ResultPage state={this.state} />
+              </Route>
+              <Route path={routes.STATS} exact>
+                <StatsPage />
               </Route>
             </Switch>
           </Router>

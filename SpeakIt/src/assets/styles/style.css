@@ -274,3 +274,21 @@ body {
 .result__control a {
     margin-right: 20px;
 }
+
+.stats__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.stats__item span{
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.stats__item {
+    margin-bottom: 20px;
+}

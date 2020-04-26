@@ -4,28 +4,11 @@ import { Pagination } from 'react-bootstrap';
 import routes from '../constants/routes';
 import WordsSet from '../components/words/WordsSet';
 
-let recornitionStop = false;
-
 class GamePage extends Component {
 
     constructor(props) {
     super(props);
-    recornitionStop = recornitionStop ? false : recornitionStop;
-    this.state = {
-      activePage: props.state.activePage,
-      pages: props.state.pages,
-      skip: props.state.skip,
-      shift: 10,
-      activeGroup: props.state.activeGroup,
-      words: props.state.words,
-      knownWords: props.state.knownWords,
-      currentImage: props.state.currentImage,
-      currentTranslate: '',
-      currentTranscript: '',
-      isSpeakMode: false,
-      recognition: props.state.recognition,
-      isExit: false,
-    };
+    this.state = props.state;
   }
 
   getWords = async (page, group) => {
@@ -153,7 +136,7 @@ class GamePage extends Component {
   }
 
   recognitionEndEventHandler = () => {
-    if(this.state.isSpeakMode && !recornitionStop)
+    if(this.state.isSpeakMode)
       this.state.recognition.start();
   }
 
@@ -175,21 +158,11 @@ class GamePage extends Component {
     this.clearResults();
     this.state.recognition.stop();
     this.state.recognition.abort();
+    this.props.state.updateStats(this.state);
   }
 
   onGetResults = () => {
-    this.props.state.changeParentState({
-      words: this.state.words,
-      knownWords: this.state.knownWords,
-      activePage: this.state.activePage,
-      activeGroup: this.state.activeGroup,
-      pages: this.state.pages,
-      skip: this.state.skip,
-      currentImage: this.state.currentImage,
-      currentTranslate:  this.state.currentTranslate,
-      currentTranscript: this.state.currentTranscript,
-    });
-    recornitionStop = true;
+    this.props.state.changeParentState(this.state);
     this.state.recognition.stop();
     this.state.recognition.removeEventListener('result', this.recognitionResultEventHandler)
     this.state.recognition.removeEventListener('end', this.recognitionEndEventHandler);
@@ -200,18 +173,10 @@ class GamePage extends Component {
     if(this.state.words.length === 0) {
       this.getWords(this.state.activePage, this.state.activeGroup);
     }
-    if(this.props.state.words.length > 0 && !this.props.state.isNewGame) {
+    if(this.props.state.words.length > 0 && this.state.isSpeakMode) {
       this.state.recognition.addEventListener('result', this.recognitionResultEventHandler)
       this.state.recognition.addEventListener('end', this.recognitionEndEventHandler);
       this.state.recognition.start();
-      this.setState({
-        isSpeakMode: true
-      });
-    }
-    if(this.props.state.isNewGame) {
-      this.setState({
-        isSpeakMode: false
-      });
     }
   }
 
