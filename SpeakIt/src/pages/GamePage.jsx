@@ -213,7 +213,7 @@ class GamePage extends Component {
                     className={`form-control ${this.state.isSpeakMode ? 'input_active' : ''}`}
                     id="disabledInput"
                     type="text"
-                    defaultValue={this.state.isSpeakMode ? this.state.currentTranscript : this.state.currentTranslate} 
+                    value={this.state.isSpeakMode ? this.state.currentTranscript : this.state.currentTranslate} 
                     disabled
                     />
                 </fieldset>

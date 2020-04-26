@@ -17,7 +17,11 @@ class ResultPage extends Component {
       this.props.state.changeParentState({isSpeakMode: false});
   }
 
-   render = () => {
+  returnGame = () => {
+    this.props.state.changeParentState({isSpeakMode: this.props.state.isSpeakMode});
+  }
+
+  render = () => {
     return (
         <div className="result__container">
             <div className="error__title">
@@ -41,7 +45,7 @@ class ResultPage extends Component {
                 })}
             </div>
             <div className="result__control">
-                <Link to={routes.GAME}  className="btn btn-primary btn-lg" >Return</Link>
+                <Link to={routes.GAME}  className="btn btn-primary btn-lg" onClick={this.returnGame}>Return</Link>
                 <Link to={routes.GAME}  className="btn btn-primary btn-lg" onClick={this.setNewGame}>New game</Link>
                 <Link to={routes.STATS}  className="btn btn-primary btn-lg">Statistics</Link>
                 </div>
