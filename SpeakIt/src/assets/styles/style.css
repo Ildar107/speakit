@@ -1,0 +1,276 @@
+body {
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.preview {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.preview h1 {
+    
+    margin-bottom: 2vw;
+}
+
+.preview p {
+    margin-bottom: 2vw;
+}
+
+.preview a {
+   font-size: 1.5rem;
+   width: 12vw;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.game__level {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1vw 0;
+}
+
+.game__level .progress__container {
+    width: 30%;
+    margin-right: 37px;
+}
+
+
+.progress__container label{
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #EB6864;
+}
+
+
+.game__level .progress{
+    align-self: flex-end;
+}
+
+.game-image-container {
+    position: relative;
+    width:390px;
+    height:390px;
+}
+.game-image-container input{
+    margin: 0.5vw 0;
+}
+
+.micro {
+    display: none;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    bottom: 66px;
+    left: 6px;
+}
+
+.micro svg {
+    width: 18px;
+}
+
+.micro_active {
+    display: block;
+}
+
+.game-image-container input {
+    border: 0;
+    background-color: #fff !important;
+    border-bottom: 1px solid #aaa;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.game-image-container .input_active {
+    border: 0;
+    border-bottom: 1px solid #eb6864;
+    padding-left: 37px;
+    color: #EB6864;
+}
+
+.game__set {
+    display: grid;
+    grid-template: 
+        "a a a a a"
+        "a a a a a"
+        "a a a a a"
+        "a a a a a";
+    width: 100%;
+}
+
+.game__item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 5px 5px 8px 74px;
+    margin: 0.5vw;
+    width: 12vw;
+    font-size: 1.5rem;
+}
+
+.game__item p {
+    margin-bottom: 0;
+}
+
+.game__set .game__item_disabled:hover {
+    color: #369;
+    border-color: #369;
+    background-color: #fff;
+    cursor: default;
+}
+
+.game__set .game__item_disabled:active {
+    color: #369 !important;
+    border-color: #369 !important;
+    background-color: #fff !important;
+}
+
+.game__set .game__item_active {
+    color: #fff;
+    background-color: #369;
+    border-color: #369;
+}
+
+
+.game__set .game__item_active:active, .game__set .game__item_active:hover  {
+    color: #fff !important;
+    background-color: #369 !important;
+    border-color: #369 !important;
+}
+
+
+
+.audio-icon {
+    position: absolute;
+    top: 14px;
+    left: 27px;
+    width: 46px;
+    height: 43px;
+}
+
+.control {
+    display: grid;
+    grid-template-columns: 2fr 7fr 2fr;
+    width: 100%;
+    margin: 1vw 0;
+    grid-gap: 1vw;
+}
+
+.control button, .control a {
+    display: block;
+    height: 46px;
+}
+
+.control .speak_active {
+    background-color: #e74742 !important;
+    border-color: #e53c37;
+    opacity: 1;
+    cursor: default;
+}
+
+.pagination ul {
+    margin-bottom: 0;
+}
+
+
+
+/* #restart {
+    flex-shrink: 0;
+}
+
+#speak {
+    flex-shrink: 4;
+}
+
+#restart {
+    flex-shrink: 0;
+} */
+
+.result__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.error__title, .success__title {
+    width: 40%;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.error__words, .success__words {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.result__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 15px;
+    width: 30%;
+    font-weight: 600;
+}
+
+.result__word {
+    width: 20%;
+    margin-right: 50px;
+}
+
+.result__transcription {
+    width: 20%;
+    margin-right: 50px;
+    font-weight: 400;
+}
+
+.result__translate {
+    font-weight: 400;
+}
+
+.result__audio-icon {
+    width: 24px;
+    height: 27px;
+}
+
+.result__control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+    width: 40%;
+}
+
+.result__control a {
+    margin-right: 20px;
+}
