@@ -67,6 +67,9 @@ class App extends Component {
               <Route path={routes.STATS} exact>
                 <StatsPage />
               </Route>
+              <Route>
+                <MainPage />
+              </Route>
             </Switch>
           </Router>
         </StoreContext.Provider>
